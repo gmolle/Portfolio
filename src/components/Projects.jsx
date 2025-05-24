@@ -47,6 +47,24 @@ const pathfindingImages = [
   { src: pathfinding5, caption: "Full pathfinding process visualized" },
 ];
 
+import ecommerce1 from "../assets/images/ecommerce/1.png";
+import ecommerce2 from "../assets/images/ecommerce/2.png";
+import ecommerce3 from "../assets/images/ecommerce/3.png";
+import ecommerce4 from "../assets/images/ecommerce/4.png";
+import ecommerce5 from "../assets/images/ecommerce/5.png";
+import ecommerce6 from "../assets/images/ecommerce/6.png";
+import ecommerce7 from "../assets/images/ecommerce/7.png";
+
+const ecommerceImages = [
+  { src: ecommerce1, caption: "Landing page of the ecommerce site" },
+  { src: ecommerce2, caption: "Products page" },
+  { src: ecommerce3, caption: "Detailed view of an individual product" },
+  { src: ecommerce4, caption: "Cart page" },
+  { src: ecommerce5, caption: "Checkout page" },
+  { src: ecommerce6, caption: "Order Success page" },
+  { src: ecommerce7, caption: "Admin view" },
+];
+
 const projects = [
   {
     name: "Collaboration Board",
@@ -76,28 +94,13 @@ const projects = [
     deployLink: "https://project-two.com",
   },
   {
-    name: "Project Three",
-    description: "Another full-stack project.",
-    tech: ["TypeScript", "Tailwind"],
-    images: ["image5.jpg", "image6.jpg"],
-    codeLink: "https://github.com/project-three",
+    name: "Ecommerce Site",
+    description:
+      "A full e-commerce site that enables users to browse products, complete purchases through a seamless checkout, and receive clear order confirmations.",
+    tech: ["React", "Redux", "JavaScript", "Tailwind"],
+    images: ecommerceImages,
+    codeLink: "https://github.com/gmolle/Ecommerce-Site",
     deployLink: "https://project-three.com",
-  },
-  {
-    name: "Project Four",
-    description: "Some cool frontend stuff.",
-    tech: ["JavaScript", "Tailwind"],
-    images: ["image7.jpg", "image8.jpg"],
-    codeLink: "https://github.com/project-four",
-    deployLink: "https://project-four.com",
-  },
-  {
-    name: "Project Five",
-    description: "Basic React and Redux demo.",
-    tech: ["React", "Redux", "Tailwind"],
-    images: ["image9.jpg", "image10.jpg"],
-    codeLink: "https://github.com/project-five",
-    deployLink: "https://project-five.com",
   },
 ];
 
