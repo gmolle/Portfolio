@@ -91,7 +91,7 @@ const projects = [
     tech: ["React", "JavaScript", "Tailwind"],
     images: pathfindingImages,
     codeLink: "https://github.com/gmolle/Pathfinding-Visualizer",
-    deployLink: "https://project-two.com",
+    deployLink: "https://gmolle.github.io/Pathfinding-Visualizer/",
   },
   {
     name: "Ecommerce Site",
@@ -100,7 +100,7 @@ const projects = [
     tech: ["React", "Redux", "JavaScript", "Tailwind"],
     images: ecommerceImages,
     codeLink: "https://github.com/gmolle/Ecommerce-Site",
-    deployLink: "https://project-three.com",
+    deployLink: "https://gmolle.github.io/Ecommerce-Site/",
   },
 ];
 
