@@ -135,7 +135,7 @@ const Contact = () => {
             <div className="flex items-center gap-4 text-lg text-gray-700">
               <FaGithub className="text-gray-900 w-6 h-6" />
               <a
-                href="https://github.com/"
+                href="https://github.com/gmolle"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
