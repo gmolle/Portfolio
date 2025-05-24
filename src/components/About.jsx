@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import resumePDF from "../assets/Garrett-Molle-Resume.pdf";
 
 const About = () => (
   <section
@@ -36,7 +37,7 @@ const About = () => (
           {/* Download Resume Button */}
           <div className="mt-6">
             <a
-              href="src/assets/Garrett-Molle-Resume.pdf"
+              href={resumePDF}
               download
               className="inline-block px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-all duration-300"
             >
