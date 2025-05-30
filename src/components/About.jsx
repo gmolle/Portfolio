@@ -28,9 +28,14 @@ const About = () => (
               About Me
             </h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-              I'm a passionate Frontend Developer specializing in React, Redux,
-              and modern JavaScript frameworks. I build intuitive, responsive
-              user interfaces with a focus on accessibility and performance.
+              I'm a Full Stack Developer with a strong emphasis on frontend
+              technologies, specializing in React, Redux, and modern JavaScript
+              frameworks. While I’m comfortable working across the entire stack,
+              my passion lies in crafting intuitive, responsive user interfaces
+              that prioritize accessibility, performance, and a seamless user
+              experience. I thrive on building clean, maintainable code and
+              bringing thoughtful design to life through modern development
+              practices.
             </p>
           </div>
 
