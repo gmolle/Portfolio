@@ -27,8 +27,13 @@ import {
   SiVercel,
   SiHeroku,
   SiNetlify,
+  SiTestinglibrary,
+  SiJest,
 } from "react-icons/si";
 import { motion } from "motion/react";
+
+import junitlogo from "../assets/junit5-logo.svg";
+import playwrightlogo from "../assets/playwright-logo.svg";
 
 const skills = {
   frontend: [
@@ -85,6 +90,24 @@ const skills = {
     { name: "Heroku", icon: <SiHeroku className="text-purple-800 w-6 h-6" /> },
     { name: "Netlify", icon: <SiNetlify className="text-teal-500 w-6 h-6" /> },
   ],
+  testing: [
+    {
+      name: "Playwright",
+      icon: <img src={playwrightlogo} className="w-6 h-6"></img>,
+    },
+    {
+      name: "React Testing Library",
+      icon: <SiTestinglibrary className="text-[#ee3942] w-6 h-6" />,
+    },
+    {
+      name: "Jest",
+      icon: <SiJest className="text-[#8d435a] w-6 h-6" />,
+    },
+    {
+      name: "Junit",
+      icon: <img src={junitlogo} className="w-6 h-6"></img>,
+    },
+  ],
 };
 
 const initialX = window.innerWidth <= 1400 ? -100 : -300;
@@ -99,7 +122,7 @@ const Skills = () => (
         Technical Skills
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {/* Frontend Skills */}
         <motion.div
           initial={{ rotateY: 90, opacity: 0, x: initialX }}
@@ -134,7 +157,7 @@ const Skills = () => (
           initial={{ rotateY: 90, opacity: 0, x: initialX }}
           whileInView={{ rotateY: 0, opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.9 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           style={{
             transformStyle: "preserve-3d",
             perspective: 1000,
@@ -163,7 +186,7 @@ const Skills = () => (
           initial={{ rotateY: 90, opacity: 0, x: initialX }}
           whileInView={{ rotateY: 0, opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 1.8 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 1.2 }}
           style={{
             transformStyle: "preserve-3d",
             perspective: 1000,
@@ -175,6 +198,35 @@ const Skills = () => (
             </h3>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {skills.devops_tools.map((skill, index) => (
+                <li
+                  key={index}
+                  className="flex items-center gap-4 text-lg text-gray-700 transition-transform duration-300 hover:scale-105"
+                >
+                  {skill.icon}
+                  {skill.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+
+        {/* Testing */}
+        <motion.div
+          initial={{ rotateY: 90, opacity: 0, x: initialX }}
+          whileInView={{ rotateY: 0, opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 1.8 }}
+          style={{
+            transformStyle: "preserve-3d",
+            perspective: 1000,
+          }}
+        >
+          <div className="bg-white rounded-xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl h-full">
+            <h3 className="text-2xl font-semibold text-indigo-600 mb-6">
+              Testing
+            </h3>
+            <ul className="grid grid-cols-1 gap-6">
+              {skills.testing.map((skill, index) => (
                 <li
                   key={index}
                   className="flex items-center gap-4 text-lg text-gray-700 transition-transform duration-300 hover:scale-105"

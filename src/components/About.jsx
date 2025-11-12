@@ -53,7 +53,7 @@ const About = () => (
       </motion.div>
 
       {/* Right: Code Snippet Card */}
-      <div className="w-full lg:w-1/3 flex justify-center lg:justify-start min-h-[300px] lg:min-h-full flex-col items-center">
+      <div className="w-full lg:w-1/3 flex flex-col items-center lg:items-start">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -66,8 +66,12 @@ const About = () => (
               transition: { duration: 0.8, ease: "easeOut" },
             },
           }}
+          className="w-full"
         >
-          <div className="bg-gray-900 text-green-400 font-mono p-6 rounded-xl shadow-lg text-sm leading-relaxed w-full max-w-xs sm:max-w-sm lg:max-w-md h-full flex flex-col justify-between">
+          <div
+            className="bg-gray-900 text-green-400 font-mono p-6 rounded-xl shadow-lg text-sm leading-relaxed
+      w-full xl:max-w-md flex flex-col justify-between"
+          >
             <pre className="overflow-x-auto ">
               <code>
                 {`const developer = {
