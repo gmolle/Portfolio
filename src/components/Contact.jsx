@@ -1,32 +1,35 @@
 import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
-import { FaLinkedin, FaGithub, FaEnvelope, FaPhone } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+
+// 412 from EmailJS: usually Gmail auth scopes. Reconnect the Gmail service in EmailJS dashboard and grant all permissions.
+const inputClass =
+  "w-full px-3 py-2.5 border border-gray-200 rounded-lg bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:border-gray-900 transition-colors";
 
 const Contact = () => {
   const [emailSent, setEmailSent] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSubmitError(false);
 
-    // Send the form data to EmailJS
     emailjs
       .sendForm(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(
-        (result) => {
-          console.log("Email sent successfully:", result.text);
+        () => {
           setEmailSent(true);
-          setTimeout(() => {
-            setEmailSent(false);
-          }, 10000);
+          setTimeout(() => setEmailSent(false), 10000);
         },
-        (error) => {
-          console.log("Error sending email:", error.text);
+        (err) => {
+          console.error("EmailJS error:", err?.status, err?.text);
+          setSubmitError(true);
         }
       );
   };
@@ -34,115 +37,140 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-16 bg-gradient-to-r from-indigo-50 to-indigo-200 flex justify-center items-center font-manrope"
+      className="py-20 scroll-mt-20 bg-gradient-to-br from-gray-50 to-gray-100 font-manrope"
     >
-      <div className="max-w-7xl w-full px-6 lg:px-8 flex flex-col lg:flex-row gap-12">
-        {/* Contact Form */}
-        <div className="flex-1 bg-white rounded-xl shadow-xl p-8">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-6 text-center lg:text-left">
-            Contact Me
-          </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
+          Contact
+        </h2>
+        <p className="text-gray-600 mb-10">
+          I'm always open to new opportunities and conversations. Reach out via
+          the form or the links below.
+        </p>
 
-          {emailSent ? (
-            <p className="text-green-600 text-center lg:text-left text-lg font-semibold">
-              Thank you! Your message has been sent.
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          {/* Form */}
+          <div className="bg-white rounded-xl border border-gray-200/80 shadow-sm p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-6">
+              Send a message
+            </h3>
+
+            {emailSent ? (
+              <div className="py-4">
+                <p className="text-green-700 font-medium">
+                  Thanks—your message has been sent. I'll get back to you soon.
+                </p>
+              </div>
+            ) : (
+              <form ref={form} onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label
+                    htmlFor="contact-name"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Name
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="contact-email"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="contact-message"
+                    className="block text-sm font-medium text-gray-700 mb-1"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="title"
+                    placeholder="Your message..."
+                    rows={5}
+                    className={`${inputClass} resize-none`}
+                    required
+                  />
+                </div>
+                {submitError && (
+                  <p className="text-sm text-red-600">
+                    The message couldn't be sent. This is often due to email
+                    service configuration—check the browser console for details,
+                    or email me directly using the link on the right.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  className="w-full px-4 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors cursor-pointer"
+                >
+                  Send message
+                </button>
+              </form>
+            )}
+          </div>
+
+          {/* Links */}
+          <div className="bg-white rounded-xl border border-gray-200/80 shadow-sm p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              Get in touch
+            </h3>
+            <p className="text-gray-600 text-[15px] leading-relaxed mb-6">
+              Prefer email or want to connect on LinkedIn or GitHub? Use the
+              links below.
             </p>
-          ) : (
-            <form ref={form} onSubmit={handleSubmit} className="space-y-6">
-              <div className="flex flex-col">
-                <label className="text-lg text-gray-700 font-medium">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Enter your name"
-                  className="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all duration-200 outline-none"
-                  required
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label className="text-lg text-gray-700 font-medium">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  className="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 transition-all duration-200 outline-none"
-                  required
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label className="text-lg text-gray-700 font-medium">
-                  Message
-                </label>
-                <textarea
-                  name="title"
-                  placeholder="Write your message here..."
-                  className="p-3 border rounded-lg focus:ring-2 focus:ring-indigo-500 h-32 resize-none transition-all duration-200 outline-none"
-                  required
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full px-4 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors duration-200 cursor-pointer"
-              >
-                Send Message
-              </button>
-            </form>
-          )}
-        </div>
-
-        {/* Contact Info & Social Links */}
-        <div className="flex-1 bg-white p-8 rounded-xl shadow-lg">
-          <h3 className="text-2xl font-semibold text-indigo-700 mb-6">
-            Let's Connect
-          </h3>
-
-          {/* Short Introduction */}
-          <p className="text-gray-600 mb-4">
-            I'm always open to new opportunities, collaborations, and engaging
-            discussions. Feel free to reach out!
-          </p>
-
-          {/* Contact Details */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-4 text-lg text-gray-700">
-              <FaEnvelope className="text-indigo-600 w-6 h-6" />
-              <a
-                href="mailto:molle_g@yahoo.com"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                molle_g@yahoo.com
-              </a>
-            </div>
-            <div className="flex items-center gap-4 text-lg text-gray-700">
-              <FaLinkedin className="text-blue-600 w-6 h-6" />
-              <a
-                href="https://www.linkedin.com/in/garrettmolle/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                LinkedIn Profile
-              </a>
-            </div>
-            <div className="flex items-center gap-4 text-lg text-gray-700">
-              <FaGithub className="text-gray-900 w-6 h-6" />
-              <a
-                href="https://github.com/gmolle"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                GitHub Profile
-              </a>
-            </div>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="mailto:molle_g@yahoo.com"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-colors"
+                >
+                  <FaEnvelope className="text-gray-500 w-5 h-5 flex-shrink-0" />
+                  <span>molle_g@yahoo.com</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/garrettmolle/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-colors"
+                >
+                  <FaLinkedin className="text-[#0A66C2] w-5 h-5 flex-shrink-0" />
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/gmolle"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-700 hover:text-gray-900 transition-colors"
+                >
+                  <FaGithub className="text-gray-700 w-5 h-5 flex-shrink-0" />
+                  <span>GitHub</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

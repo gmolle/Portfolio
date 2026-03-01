@@ -2,6 +2,9 @@ export default {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Manrope", "system-ui", "sans-serif"],
+      },
       keyframes: {
         slideDown: {
           "0%": { transform: "translateY(-10px)", opacity: "0" },

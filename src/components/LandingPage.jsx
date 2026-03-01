@@ -1,9 +1,11 @@
 import { ReactTyped } from "react-typed";
 import useScroll from "../hooks/useScroll";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import { useHomeAnimations } from "../context/HomeAnimationsContext";
 
 const LandingPage = () => {
   const { handleScroll } = useScroll();
+  const skipAnimations = useHomeAnimations();
 
   return (
     <section
@@ -17,11 +19,11 @@ const LandingPage = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-black/60 backdrop-blur-md"></div>
 
       <motion.div
-        initial="hidden"
+        initial={skipAnimations ? "visible" : "hidden"}
         animate="visible"
         variants={{
           hidden: { opacity: 0, y: 100 },
-          visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+          visible: { opacity: 1, y: 0, transition: { duration: skipAnimations ? 0 : 1 } },
         }}
         className="relative z-10 text-left max-w-4xl"
       >
@@ -58,9 +60,9 @@ const LandingPage = () => {
 
         <motion.p
           className="text-xl sm:text-2xl mb-6"
-          initial={{ opacity: 0, y: 20 }}
+          initial={skipAnimations ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: skipAnimations ? 0 : 1, duration: skipAnimations ? 0 : 1 }}
         >
           Explore my work, and let's create something amazing together.
         </motion.p>
