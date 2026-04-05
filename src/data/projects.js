@@ -19,6 +19,12 @@ import ecommerce4 from "../assets/images/ecommerce/4.png";
 import ecommerce5 from "../assets/images/ecommerce/5.png";
 import ecommerce6 from "../assets/images/ecommerce/6.png";
 import ecommerce7 from "../assets/images/ecommerce/7.png";
+import debugger1 from "../assets/images/ai-debugger/1.png";
+import debugger2 from "../assets/images/ai-debugger/2.png";
+import debugger3 from "../assets/images/ai-debugger/3.png";
+import debugger4 from "../assets/images/ai-debugger/4.png";
+import debugger5 from "../assets/images/ai-debugger/5.png";
+import debugger6 from "../assets/images/ai-debugger/6.png";
 
 const collabImages = [
   {
@@ -59,7 +65,59 @@ const ecommerceImages = [
   { src: ecommerce7, caption: "Admin view" },
 ];
 
+const aiDebuggerImages = [
+  { src: debugger1, caption: "Default view of the AI debugger" },
+  {
+    src: debugger2,
+    caption: "Filled inputs with a Kotlin error and the analysis summary below",
+  },
+  {
+    src: debugger3,
+    caption: "Suggested fixes with confidence bars and copyable code",
+  },
+  {
+    src: debugger4,
+    caption: "Recent History filtered to show only Python errors",
+  },
+  {
+    src: debugger5,
+    caption: "Analyzing: loading overlay on the editors while the request runs",
+  },
+  {
+    src: debugger6,
+    caption:
+      "Language mismatch warning with a one-click “use suggested language” fix",
+  },
+];
+
 export const projects = [
+  {
+    slug: "ai-debugging-assistant",
+    name: "AI Debugging Assistant",
+    description:
+      "An AI debugger that helps users debug their code by providing step-by-step explanations of the code.",
+    tech: [
+      "React",
+      "JavaScript",
+      "TypeScript",
+      "Tailwind",
+      "Java",
+      "Spring Boot",
+    ],
+    images: aiDebuggerImages,
+    codeLink: "https://github.com/gmolle/ai-debugging-assistant",
+    deployLink: "https://gmolle-ai-debugging-assistant.vercel.app/",
+  },
+  {
+    slug: "pathfinding-visualizer",
+    name: "Pathfinding Visualizer",
+    description:
+      "An interactive React-based web app for visualizing popular pathfinding algorithms in real-time.",
+    tech: ["React", "JavaScript", "Tailwind"],
+    images: pathfindingImages,
+    codeLink: "https://github.com/gmolle/Pathfinding-Visualizer",
+    deployLink: "https://gmolle.github.io/Pathfinding-Visualizer/",
+  },
   {
     slug: "collaboration-board",
     name: "Collaboration Board",
@@ -80,16 +138,7 @@ export const projects = [
     codeLink: "https://github.com/gmolle/Sorting-Visualizer",
     deployLink: "https://gmolle-sorting-visualizer.web.app/",
   },
-  {
-    slug: "pathfinding-visualizer",
-    name: "Pathfinding Visualizer",
-    description:
-      "An interactive React-based web app for visualizing popular pathfinding algorithms in real-time.",
-    tech: ["React", "JavaScript", "Tailwind"],
-    images: pathfindingImages,
-    codeLink: "https://github.com/gmolle/Pathfinding-Visualizer",
-    deployLink: "https://gmolle.github.io/Pathfinding-Visualizer/",
-  },
+
   {
     slug: "ecommerce-site",
     name: "Ecommerce Site",
@@ -102,7 +151,15 @@ export const projects = [
   },
 ];
 
-export const PROJECT_TECH_FILTERS = ["React", "Redux", "TypeScript", "JavaScript", "Tailwind"];
+export const PROJECT_TECH_FILTERS = [
+  "React",
+  "Redux",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind",
+  "Java",
+  "Spring Boot",
+];
 
 export function getProjectBySlug(slug) {
   return projects.find((p) => p.slug === slug) ?? null;
