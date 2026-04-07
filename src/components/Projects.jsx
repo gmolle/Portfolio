@@ -28,29 +28,34 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-20 scroll-mt-20 bg-gradient-to-br from-gray-50 to-gray-100 min-h-[500px] font-manrope"
+      className="py-20 scroll-mt-20 bg-gradient-to-br from-slate-50 via-gray-50 to-indigo-50/40 min-h-[500px] font-manrope"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">
-          Projects
-        </h2>
-        <p className="text-gray-600 mb-8">
-          These projects reflect my professional growth and personal curiosity—
-          I'm always building something new in my free time.
-        </p>
+        <div className="max-w-2xl mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 tracking-tight">
+            Projects
+          </h2>
+          <p className="text-gray-600 text-[17px] leading-relaxed">
+            These projects reflect my professional growth and personal curiosity—
+            I'm always building something new in my free time.
+          </p>
+        </div>
 
         <ProjectsFilters
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
           techFilter={techFilter}
           onTechToggle={toggleTechFilter}
-          onClearTech={() => setTechFilter([])}
+          onResetFilters={() => {
+            setTechFilter([]);
+            setSearchQuery("");
+          }}
           matchAll={matchAll}
           onMatchAllChange={setMatchAll}
           resultCount={filteredProjects.length}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (
               <ProjectCard key={project.slug} project={project} />

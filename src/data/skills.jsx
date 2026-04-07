@@ -33,7 +33,7 @@ import {
 import junitLogo from "../assets/junit5-logo.svg";
 import playwrightLogo from "../assets/playwright-logo.svg";
 
-const iconClass = "w-6 h-6";
+const iconClass = "w-5 h-5";
 
 export const skills = {
   frontend: [

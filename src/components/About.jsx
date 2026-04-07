@@ -20,35 +20,122 @@ const codeVariants = {
   },
 };
 
+const S = {
+  kw: "text-sky-400/80",
+  id: "text-emerald-400/75",
+  prop: "text-violet-300/75",
+  str: "text-amber-200/70",
+  punct: "text-slate-500",
+};
+
+function CodeWindow() {
+  return (
+    <div className="w-full max-w-md rounded-xl overflow-hidden border border-gray-700/90 bg-[#1e2228] shadow-lg shadow-gray-900/25 ring-1 ring-black/20">
+      <div className="flex items-center gap-2 px-3 py-2 border-b border-gray-800/90 bg-[#252932]">
+        <span className="flex gap-1.5 shrink-0" aria-hidden>
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/85" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#febc2d]/85" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]/85" />
+        </span>
+        <div className="flex-1 min-w-0 flex items-center justify-center">
+          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#1e2228] border border-gray-700/80 max-w-full">
+            <svg
+              className="w-3.5 h-3.5 text-slate-500 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+              />
+            </svg>
+            <span className="text-xs font-medium text-slate-400 truncate">
+              developer.js
+            </span>
+          </div>
+        </div>
+        <span className="w-[52px] shrink-0" aria-hidden />
+      </div>
+      <pre className="p-5 overflow-x-auto">
+        <code className="font-mono text-sm leading-relaxed text-slate-400 block whitespace-pre">
+          <span className={S.kw}>const</span>{" "}
+          <span className={S.id}>developer</span>
+          <span className={S.punct}> = {"{"}</span>
+          {"\n"}
+          <span className={S.prop}> name</span>
+          <span className={S.punct}>: </span>
+          <span className={S.str}>{`"Garrett Molle"`}</span>
+          <span className={S.punct}>,</span>
+          {"\n"}
+          <span className={S.prop}> stack</span>
+          <span className={S.punct}>: [</span>
+          <span className={S.str}>{`"HTML"`}</span>
+          <span className={S.punct}>, </span>
+          <span className={S.str}>{`"CSS"`}</span>
+          <span className={S.punct}>, </span>
+          <span className={S.str}>{`"JavaScript"`}</span>
+          <span className={S.punct}>,</span>
+          {"\n"}
+          <span className={S.punct}> </span>
+          <span className={S.str}>{`"React"`}</span>
+          <span className={S.punct}>, </span>
+          <span className={S.str}>{`"Tailwind"`}</span>
+          <span className={S.punct}>, </span>
+          <span className={S.str}>{`"Node.js"`}</span>
+          <span className={S.punct}>, </span>
+          <span className={S.str}>{`"Java"`}</span>
+          <span className={S.punct}>],</span>
+          {"\n"}
+          <span className={S.prop}> passion</span>
+          <span className={S.punct}>: </span>
+          <span className={S.str}>{`"Building clean, responsive UIs"`}</span>
+          <span className={S.punct}>,</span>
+          {"\n"}
+          <span className={S.prop}> lookingFor</span>
+          <span className={S.punct}>: </span>
+          <span className={S.str}>{`"Innovative team & real impact"`}</span>
+          {"\n"}
+          <span className={S.punct}>{"};"}</span>
+        </code>
+      </pre>
+    </div>
+  );
+}
+
 const About = () => {
   const skipAnimations = useHomeAnimations();
 
   return (
     <section
       id="about"
-      className="py-20 scroll-mt-20 bg-gradient-to-b from-gray-50 to-gray-100 font-manrope"
+      className="py-20 scroll-mt-20 bg-gradient-to-br from-gray-50 to-gray-100 font-manrope"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-10 tracking-tight">
-          About
-        </h2>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mb-10 lg:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+            About
+          </h2>
+        </div>
 
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14">
-          {/* Left: Bio */}
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 lg:items-start">
           <motion.div
-            className="w-full lg:max-w-xl"
+            className="w-full lg:max-w-xl shrink-0"
             initial={skipAnimations ? "visible" : "hidden"}
             whileInView={skipAnimations ? undefined : "visible"}
             viewport={{ once: true, amount: 0.2 }}
             variants={aboutVariants}
             transition={skipAnimations ? { duration: 0 } : undefined}
           >
-            <p className="text-gray-700 text-[17px] leading-[1.7] mb-6">
+            <p className="text-gray-800 text-[17px] leading-[1.75] mb-5">
               I'm a Full Stack Developer with a strong emphasis on frontend
               technologies, specializing in React, Redux, and modern JavaScript
               frameworks.
             </p>
-            <p className="text-gray-700 text-[17px] leading-[1.7] mb-8">
+            <p className="text-gray-600 text-[17px] leading-[1.75] mb-8">
               While I'm comfortable working across the entire stack, my passion
               lies in crafting intuitive, responsive user interfaces that
               prioritize accessibility, performance, and a seamless experience.
@@ -58,13 +145,14 @@ const About = () => {
             <a
               href={resumePDF}
               download
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white text-sm font-semibold rounded-xl shadow-sm shadow-indigo-900/15 hover:bg-indigo-700 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
             >
               <svg
                 className="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden
               >
                 <path
                   strokeLinecap="round"
@@ -77,7 +165,6 @@ const About = () => {
             </a>
           </motion.div>
 
-          {/* Right: Code snippet — aligned to right edge of content */}
           <motion.div
             className="w-full lg:flex-1 flex lg:justify-end"
             initial={skipAnimations ? "visible" : "hidden"}
@@ -86,58 +173,7 @@ const About = () => {
             variants={codeVariants}
             transition={skipAnimations ? { duration: 0 } : undefined}
           >
-            <div className="w-full lg:max-w-md bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
-              {/* IDE-style tab bar: inactive tabs + active tab */}
-              <div className="flex items-end border-b border-gray-800 bg-gray-800/60">
-                <div className="flex items-center gap-1.5 px-3 pt-2 pb-1.5 border border-b-0 border-gray-700 rounded-t-lg bg-gray-900 -mb-px">
-                  <svg
-                    className="w-3.5 h-3.5 text-gray-500 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
-                  </svg>
-                  <span className="text-gray-400 text-xs font-medium">
-                    developer.js
-                  </span>
-                  <button
-                    type="button"
-                    className="ml-1.5 p-0.5 rounded hover:bg-gray-700 text-gray-500 hover:text-gray-300 transition-colors"
-                    aria-label="Close tab"
-                  >
-                    <svg
-                      className="w-3 h-3"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <pre className="p-5 text-green-400/90 font-mono text-sm leading-relaxed overflow-x-auto">
-                <code>{`const developer = {
-  name: "Garrett Molle",
-  stack: ["HTML", "CSS", "JavaScript",
-    "React", "Tailwind", "Node.js", "Java"],
-  passion: "Building clean, responsive UIs",
-  lookingFor: "Innovative team & real impact"
-};`}</code>
-              </pre>
-            </div>
+            <CodeWindow />
           </motion.div>
         </div>
       </div>
